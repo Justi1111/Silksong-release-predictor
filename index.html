@@ -97,20 +97,19 @@
   <script>
     function updatePrediction() {
       const now = new Date();
+      const endOfYear = new Date(2025, 11, 31, 23, 59, 59);  // End of 2025
+
+      // Total days remaining from now to the end of 2025
+      const totalRemainingDays = (endOfYear - now) / (1000 * 60 * 60 * 24);
+
+      // Days remaining until tomorrow
       const startOfTomorrow = new Date(now);
       startOfTomorrow.setHours(24, 0, 0, 0);  // Start of tomorrow
+      const secondsUntilTomorrow = (startOfTomorrow - now) / 1000;
+      const daysUntilTomorrow = secondsUntilTomorrow / (60 * 60 * 24);  // Convert seconds to days
 
-      const endOfYear = new Date(2025, 11, 31, 23, 59, 59);  // End of 2025
-      const releaseWindowStart = now.getFullYear() < 2025 ? new Date(2025, 0, 1) : now;
-
-      // Total remaining seconds from now to the end of 2025
-      const totalRemainingSeconds = (endOfYear - releaseWindowStart) / 1000;
-
-      // Total seconds in tomorrow
-      const secondsInTomorrow = (startOfTomorrow.getTime() + 86400000 - now.getTime()) / 1000;
-
-      // Calculating the chance of release tomorrow based on time remaining
-      const chance = (secondsInTomorrow / totalRemainingSeconds) * 100;
+      // Calculate the chance of release tomorrow based on days remaining
+      const chance = 100 / totalRemainingDays;
 
       // Display the result
       document.getElementById("output").innerHTML = `
