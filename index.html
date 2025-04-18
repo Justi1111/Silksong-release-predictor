@@ -74,8 +74,10 @@
       const totalRemainingDays = totalRemainingMilliseconds / (1000 * 60 * 60 * 24);
       const chance = 100 / totalRemainingDays;
 
+      const formattedChance = chance.toFixed(10); // limit to 10 digits after decimal
+
       document.getElementById("output").innerHTML = `
-        <p class="highlight">${chance}%</p>
+        <p class="highlight">${formattedChance}%</p>
       `;
 
       setTimeout(updatePrediction, 50);
