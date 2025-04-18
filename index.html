@@ -4,84 +4,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Silksong Release Predictor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html, body {
       height: 100%;
       background-color: #0d0f1a;
-      font-family: 'Inter', sans-serif;
       color: #f5f2e8;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      height: 100vh;
       padding: 20px;
       text-align: center;
     }
 
     .icon {
-      width: 70px;
-      height: auto;
-      margin-top: 40px;
+      width: 64px;
+      margin-top: 20px;
+      user-select: none;
     }
 
     .top-text {
-      font-size: 1.4em;
+      font-size: clamp(1.2rem, 4.5vw, 2rem);
       font-weight: 700;
-      color: #88a4c3;
-      margin: 20px 0;
-      max-width: 90vw;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #88a4c3;
+      margin-top: 20px;
+      max-width: 95%;
       line-height: 1.3;
     }
 
+    #container {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 0 20px;
+    }
+
     .highlight {
-      font-size: 2.3em;
+      font-size: clamp(2rem, 6vw, 3rem);
       font-weight: 700;
       color: #f5f2e8;
       word-break: break-word;
-      margin-top: 30px;
     }
 
     .footer {
-      font-size: 0.8em;
+      font-size: 0.8rem;
       color: #88a4c3;
-      margin-bottom: 20px;
-    }
-
-    @media (min-width: 600px) {
-      .top-text {
-        font-size: 2em;
-      }
-
-      .highlight {
-        font-size: 3em;
-      }
-
-      .icon {
-        width: 100px;
-      }
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Hollow Knight emblem image -->
-  <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Hollow_Knight_cover.jpg" alt="Hollow Knight Emblem" class="icon" />
+  <!-- You can replace this image link with your own hosted Hollow Knight-style SVG or PNG -->
+  <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Hollow_Knight_cover.jpg" alt="Hollow Knight Icon" class="icon" />
 
   <div class="top-text">Chance of Silksong releasing tomorrow</div>
 
-  <div id="output">
-    <p class="highlight">Loading...</p>
+  <div id="container">
+    <div id="output">
+      <p class="highlight">Loading...</p>
+    </div>
   </div>
 
-  <div class="footer">Hollow Knight: Silksong Release Predictor™</div>
+  <div class="footer">Silksong Release Predictor™</div>
 
   <script>
     function updatePrediction() {
