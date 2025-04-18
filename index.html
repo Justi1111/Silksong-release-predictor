@@ -50,47 +50,25 @@
     }
 
     .output {
-      font-size: 1.5em;
+      font-size: 4em;  /* Increased font size for the clock */
       color: #fff;
       line-height: 1.5em;
     }
 
-    .output p {
-      margin: 20px 0;
-    }
-
     .highlight {
-      font-size: 2em;
+      font-size: 4em; /* Increased font size */
       color: #00bcd4;
       font-weight: 600;
     }
 
-    .time {
-      font-size: 0.9em;
-      color: #bbb;
-      margin-top: 20px;
-    }
-
-    /* Subtle fade-in animation */
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .fadeIn {
-      animation: fadeIn 1s ease-out;
-    }
   </style>
 </head>
 <body>
 
-  <div id="container" class="fadeIn">
+  <div id="container">
     <h1>Silksong Release Predictor</h1>
     <div id="output" class="output">
       Loading... Please wait.
-    </div>
-    <div class="time">
-      <p id="current-time"></p>
     </div>
   </div>
 
@@ -113,12 +91,9 @@
 
       // Display the result
       document.getElementById("output").innerHTML = `
-        <p>Current time: <strong>${now.toLocaleString()}</strong></p>
-        <p>Chance of Silksong releasing tomorrow:</p>
         <p class="highlight">${chance.toFixed(4)}%</p>
       `;
 
-      document.getElementById("current-time").innerText = `Last updated: ${now.toLocaleTimeString()}`;
       setTimeout(updatePrediction, 1000);
     }
 
