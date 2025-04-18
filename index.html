@@ -36,7 +36,7 @@
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2.2em;
       font-weight: 600;
       color: #fff;
       margin-bottom: 40px;
@@ -45,12 +45,12 @@
     }
 
     .output {
-      font-size: 1.5em;
+      font-size: 1.2em;
       color: #fff;
     }
 
     .highlight {
-      font-size: 3em;
+      font-size: 2em; /* Smaller than before */
       color: #fff;
       font-weight: 600;
       word-break: break-word;
@@ -69,15 +69,16 @@
   <script>
     function updatePrediction() {
       const now = new Date();
-      const endOfYear = new Date(2025, 11, 31, 23, 59, 59);
-      const totalRemainingDays = (endOfYear - now) / (1000 * 60 * 60 * 24);
+      const endOfYear = new Date(2025, 11, 31, 23, 59, 59, 999); // Include milliseconds
+      const totalRemainingMilliseconds = endOfYear - now;
+      const totalRemainingDays = totalRemainingMilliseconds / (1000 * 60 * 60 * 24);
       const chance = 100 / totalRemainingDays;
 
       document.getElementById("output").innerHTML = `
-        <p class="highlight">${chance}%</p>
+        <p class="highlight">${chance}</p>
       `;
 
-      setTimeout(updatePrediction, 1000);
+      setTimeout(updatePrediction, 50); // update faster for smooth milliseconds
     }
 
     updatePrediction();
