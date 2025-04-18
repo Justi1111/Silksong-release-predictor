@@ -40,7 +40,7 @@
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2.2em;
       font-weight: 600;
       color: #fff;
       margin-bottom: 30px;
@@ -50,17 +50,16 @@
     }
 
     .output {
-      font-size: 2em;  /* Smaller font size for the clock */
+      font-size: 1.8em;
       color: #fff;
-      line-height: 1.5em;
+      word-break: break-word;
     }
 
     .highlight {
-      font-size: 2.5em; /* Slightly smaller clock size */
-      color: #fff;  /* Keep clock white */
+      font-size: 2.2em;
+      color: #fff;
       font-weight: 600;
     }
-
   </style>
 </head>
 <body>
@@ -68,30 +67,19 @@
   <div id="container">
     <h1>Silksong Release Predictor</h1>
     <div id="output" class="output">
-      Loading... Please wait.
+      Loading...
     </div>
   </div>
 
   <script>
     function updatePrediction() {
       const now = new Date();
-      const endOfYear = new Date(2025, 11, 31, 23, 59, 59);  // End of 2025
-
-      // Total days remaining from now to the end of 2025
+      const endOfYear = new Date(2025, 11, 31, 23, 59, 59);
       const totalRemainingDays = (endOfYear - now) / (1000 * 60 * 60 * 24);
-
-      // Days remaining until tomorrow
-      const startOfTomorrow = new Date(now);
-      startOfTomorrow.setHours(24, 0, 0, 0);  // Start of tomorrow
-      const secondsUntilTomorrow = (startOfTomorrow - now) / 1000;
-      const daysUntilTomorrow = secondsUntilTomorrow / (60 * 60 * 24);  // Convert seconds to days
-
-      // Calculate the chance of release tomorrow based on days remaining
       const chance = 100 / totalRemainingDays;
 
-      // Display the result
       document.getElementById("output").innerHTML = `
-        <p class="highlight">${chance.toFixed(4)}%</p>
+        <p class="highlight">${chance}%</p>
       `;
 
       setTimeout(updatePrediction, 1000);
