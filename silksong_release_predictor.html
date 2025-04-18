@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silksong Release Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 50px;
+        }
+        #container {
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: 30px auto;
+            border-radius: 10px;
+        }
+        .output {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .time {
+            font-size: 16px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h1>Silksong Release Predictor</h1>
+    <div id="output" class="output">
+        Loading... Please wait.
+    </div>
+    <div class="time">
+        <p id="current-time"></p>
+    </div>
+</div>
+
+<script>
+    function updatePrediction() {
+        const now = new Date();
+        const startOfTomorrow = new Date(now);
+        startOfTomorrow.setHours(24, 0, 0, 0);  // Start of tomorrow
+
+        const endOfYear = new Date(2025, 11, 31, 23, 59, 59); // End of 2025
+        const releaseWindowStart = now.getFullYear() < 2025 ? new Date(2025, 0, 1) : now;
+
+        // Total seconds from now until the end of 2025
+        const totalRemainingSeconds = (endOfYear - releaseWindowStart) / 1000;
+
+        // Seconds in tomorrow
+        const secondsInTomorrow = (startOfTomorrow.getTime() + 24 * 60 * 60 * 1000 - now.getTime()) / 1000;
+
+        // Chance of release tomorrow
+        const chance = (secondsInTomorrow / totalRemainingSeconds) * 100;
+
+        // Output display
+        const output = document.getElementById("output");
+        output.innerHTML = `
+            <p>Current time: ${now.toLocaleString()}</p>
+            <p>Chance of release tomorrow: ${chance.toFixed(10)}%</p>
+        `;
+
+        // Update current time display
+        const currentTime = document.getElementById("current-time");
+        currentTime.innerText = `Current time: ${now.toLocaleString()}`;
+
+        // Refresh every second
+        setTimeout(updatePrediction, 1000);
+    }
+
+    // Start the prediction
+    updatePrediction();
+</script>
+
+</body>
+</html>
