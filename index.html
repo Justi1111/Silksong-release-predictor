@@ -104,15 +104,20 @@
       const endOfYear = new Date(2025, 11, 31, 23, 59, 59);  // End of 2025
       const releaseWindowStart = now.getFullYear() < 2025 ? new Date(2025, 0, 1) : now;
 
-      const totalRemainingSeconds = (endOfYear - releaseWindowStart) / 1000;
+      // Total remaining seconds from now to the end of 2025
+      const totalRemainingSeconds = (endOfYear - now) / 1000;
+
+      // Total seconds in tomorrow
       const secondsInTomorrow = (startOfTomorrow.getTime() + 86400000 - now.getTime()) / 1000;
+
+      // Adjusted chance formula to prevent any overestimations
       const chance = (secondsInTomorrow / totalRemainingSeconds) * 100;
 
       // Display the result
       document.getElementById("output").innerHTML = `
         <p>Current time: <strong>${now.toLocaleString()}</strong></p>
         <p>Chance of Silksong releasing tomorrow:</p>
-        <p class="highlight">${chance.toFixed(10)}%</p>
+        <p class="highlight">${chance.toFixed(4)}%</p>
       `;
 
       document.getElementById("current-time").innerText = `Last updated: ${now.toLocaleTimeString()}`;
