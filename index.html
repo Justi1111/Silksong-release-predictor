@@ -20,13 +20,14 @@
 
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
 
     #container {
+      flex-grow: 1;
       width: 100%;
-      height: 100%;
       padding: 40px;
       text-align: center;
       display: flex;
@@ -35,36 +36,38 @@
       align-items: center;
     }
 
-    h1 {
-      font-size: 2.2em;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 40px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .output {
-      font-size: 1.2em;
+    .top-text {
+      font-size: 1.4em;
+      font-weight: 400;
+      margin-bottom: 30px;
       color: #fff;
     }
 
     .highlight {
-      font-size: 2em;
+      font-size: 2.5em;
       color: #fff;
       font-weight: 600;
       word-break: break-word;
+    }
+
+    .footer {
+      font-size: 0.6em;
+      color: #888;
+      margin: 20px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
   <div id="container">
-    <h1>Silksong Release Predictor</h1>
-    <div id="output" class="output">
-      Loading...
+    <div class="top-text">Chance of Silksong releasing tomorrow</div>
+    <div id="output">
+      <p class="highlight">Loading...</p>
     </div>
   </div>
+
+  <div class="footer">Silksong Release Predictor©</div>
 
   <script>
     function updatePrediction() {
@@ -74,7 +77,7 @@
       const totalRemainingDays = totalRemainingMilliseconds / (1000 * 60 * 60 * 24);
       const chance = 100 / totalRemainingDays;
 
-      const formattedChance = chance.toFixed(10); // limit to 10 digits after decimal
+      const formattedChance = chance.toFixed(10); // 10 decimal places
 
       document.getElementById("output").innerHTML = `
         <p class="highlight">${formattedChance}%</p>
