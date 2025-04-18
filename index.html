@@ -21,28 +21,29 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #container {
-      flex-grow: 1;
-      width: 100%;
-      padding: 40px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
     }
 
     .top-text {
       font-size: 2.0em;
       font-weight: 600;
-      margin-bottom: 90px;
+      margin-top: 60px;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #fff;
+      text-align: center;
+    }
+
+    #container {
+      flex-grow: 1;
+      width: 100%;
+      padding: 0 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .highlight {
@@ -55,15 +56,16 @@
     .footer {
       font-size: 0.6em;
       color: #888;
-      margin: 20px;
+      margin-bottom: 20px;
       text-align: center;
     }
   </style>
 </head>
 <body>
 
+  <div class="top-text">Chance of Silksong releasing now</div>div>
+
   <div id="container">
-    <div class="top-text">Chance of Silksong releasing now</div>
     <div id="output">
       <p class="highlight">Loading...</p>
     </div>
